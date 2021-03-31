@@ -3,8 +3,10 @@ package com.example.todo.repository
 import com.example.todo.database.Todo
 import com.example.todo.database.TodoDatabase
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 
+@Service
 class TodoRepositoryImpl:TodoRepository {
 
     @Autowired
