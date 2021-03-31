@@ -2,11 +2,15 @@ package com.example.todo.controller.api.todo
 
 import com.example.todo.model.http.TodoDto
 import com.example.todo.service.TodoService
+import io.swagger.annotations.Api
+import io.swagger.annotations.ApiOperation
+import io.swagger.annotations.ApiParam
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
+@Api(description = "일정관리")
 @RestController
 @RequestMapping("/api/todo")
 class TodoApiController (val todoService: TodoService){
@@ -17,8 +21,10 @@ class TodoApiController (val todoService: TodoService){
         return todoService.create(todoDto)
     }
     //R
+    @ApiOperation(value = "일정확인",notes = "일정확인 GET API")
     @GetMapping(path=[""])
-    fun read(@RequestParam(required = false) index:Int?): ResponseEntity<Any?> {
+    fun read(@ApiParam(value = "index")
+             @RequestParam(required = false) index:Int?): ResponseEntity<Any?> {
         return index?.let {
             todoService.read(it)
         }?.let {
